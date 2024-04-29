@@ -1,6 +1,6 @@
 const conn = require("../dataBase/data.js");
 const bcrypt = require("bcryptjs");
-const e = require("express");
+const express = require("express");
 const jwt = require("jsonwebtoken");
 
 const demo = (req, res) => {

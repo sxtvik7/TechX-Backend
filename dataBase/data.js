@@ -4,9 +4,9 @@ const mySql = require("mysql");
 const connection = mySql.createPool({
   connectionLimit: 10,
   host: "sql6.freesqldatabase.com",
-  user: "sql6700329",
-  password: "xlsuMisTSM",
-  database: "sql6700329",
+  user: "sql6702781",
+  password: "giJ99Vm78a",
+  database: "sql6702781",
   port: 3306,
 });
 
