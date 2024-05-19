@@ -12,6 +12,7 @@ const getAllUsers = (req, res) => {
     if (err) {
       console.error("Error executing the query: ", err);
       res.status(500).send({ message: "Internal Server Error" });
+      console.log(err);
       return;
     }
     res.json({ result });

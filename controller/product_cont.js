@@ -9,6 +9,7 @@ const getAllProducts = (req, res) => {
     if (err) {
       console.error("Error Executing query: ", err);
       res.status(500).send("internal server erorr");
+      console.log(err);
       return;
     }
     res.json(results);
