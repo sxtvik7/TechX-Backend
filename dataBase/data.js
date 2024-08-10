@@ -6,7 +6,7 @@ const connection = mySql.createPool({
   host: "sql12.freesqldatabase.com",
   user: "sql12725179",
   password: "LK9zQ5Zi9c",
-  database: "test",
+  database: "sql12725179",
   port: 3306,
 });
 
