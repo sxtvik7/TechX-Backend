@@ -1,34 +1,27 @@
 const express = require("express"); 
-const { createOrder, captureOrder } = require("../controller/order_cont");
 
 const router = express.Router();
+const stripe = require("stripe")
+("sk_test_51QijwrHth9QdVzBq9V0QBmUB3fr1qnofCUPlShDfEj0kSU4nMXcNMq7EVomUkuSyLYfDYRQ0xp29d5FAFpOta3XD00aG21OkTS")
+// (process.env.STRIPE_SECRET)
 
-// router.post('/create-order', createOrder)
 
-// router.post("/capture-order", captureOrder)
-
-router.post("/create-checkout-session", async(req, res) => {
-    const {products} = req.body;
-
-    const lineItems = products.map((product)=>({
-        price_date:{
-            currency:"usd",
-            product_data:{
-                name:product.name,
-            },
-            unit_amount: Math.round(product.price)
-        },
-        quantity:product.quantity
-    }));
-    
-    const session = await Stripe.checkout.sessions.create({
-        payment_method_types:["card"],
-        line_items:lineItems,
-        mode:"payment",
-        // success_url:"",
-        // cancle_url:""
-    })
-    res.json({id:session.id})
+router.get("/", (req, res) => {
+    res.send("Hello World! ORDERS")
 })
+
+router.post('/create-payment-intent', async (req, res) => {
+  const { amount } = req.body;
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency: 'usd',
+      payment_method_types: ['card'],
+    });
+    res.status(200).send({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
 
 module.exports = router;

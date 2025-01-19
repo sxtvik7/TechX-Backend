@@ -2,6 +2,7 @@ const express = require("express");
 
 const proRoutes = require("./routes/products_routes");
 const userRoutes = require("./routes/user_routes")
+const orderRoutes = require("./routes/orders_route")
 
 const {config} = require("dotenv")
 
@@ -30,6 +31,7 @@ app.use(cors({
 
 app.use("/api/v1", proRoutes);
 app.use("/api/v1/user", userRoutes)
+app.use("/api/v1/order", orderRoutes)
 
 app.listen(port, () => {
   console.log(`server is running on port ${port} in ${process.env.NODE_ENV} mode`);
